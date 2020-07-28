@@ -1,12 +1,10 @@
 
-// pin generate part
-// var pinGenerate = document.getElementById('pin-generate');
-//     pinGenerate.addEventListener('click', function(){
-//         var pinRandom = Math.random() * 1000;
-//         var pinRandomNum = Math.round(pinRandom);
-//         console.log(pinRandomNum);
-//     })
-
+// // pin generate part
+var pinGenerate = document.getElementById('pin-generate');
+    pinGenerate.addEventListener('click', function(){
+var pinRandomNum = Math.round(1000 + Math.random() * 9000);
+    document.getElementById('generate-input-display').value = pinRandomNum;      
+})
 
 
 
@@ -24,6 +22,7 @@ var updateDisplayValue = (clickObj) => {
     displayValue += btnText;
     inputDisplay.value = displayValue;
 }
+// document.getElementById('calc-input-display').value = "";
 
 var calcNumBtn = document.getElementsByClassName('calc-btn');
 for (let i = 0; i < calcNumBtn.length; i++) {
@@ -48,3 +47,28 @@ backspaceBtn.onclick = () => {
        displayValue = "";
        inputDisplay.value = displayValue;
 }
+
+
+
+// submit part
+var submitBtn = document.getElementById('calc-submit');
+submitBtn.addEventListener('click', function(){
+    let pinInput = document.getElementById('generate-input-display').value;
+    let submitInput = document.getElementById('calc-input-display').value; 
+    if (pinInput === submitInput){
+        var pinMatched = document.getElementById('pin-matched');
+        pinMatched.style.display = 'block';
+        var missMatched = document.getElementById('miss-matched');
+        missMatched.style.display = 'none';
+        document.getElementById('generate-input-display').value = "";
+        document.getElementById('calc-input-display').value = "";
+    }
+    else{
+        var pinMatched = document.getElementById('pin-matched');
+        pinMatched.style.display = 'none';
+        var missMatched = document.getElementById('miss-matched');
+        missMatched.style.display = 'block';
+        document.getElementById('generate-input-display').value = "";
+        document.getElementById('calc-input-display').value = ""; 
+    }
+})
